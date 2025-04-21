@@ -11,8 +11,11 @@ class ChatBot extends StatefulWidget {
 }
 
 class _ChatBotState extends State<ChatBot> {
+  Map data = {};
+
   @override
   Widget build(BuildContext context) {
+    data = ModalRoute.of(context)!.settings.arguments as Map;
     return Scaffold(
       backgroundColor: Colors.grey[200],
       appBar: AppBar(
@@ -25,7 +28,7 @@ class _ChatBotState extends State<ChatBot> {
         provider: GeminiProvider(
           model: GenerativeModel(
             model: 'gemini-2.0-flash',
-            apiKey: 'AIzaSyCnBARlgPORFWs7iDmv0LK0IR6-ls8PRXI',
+            apiKey: data["API_KEY"],
           ),
         ),
       ),

@@ -3,8 +3,20 @@ import 'package:flutter_svg/flutter_svg.dart';
 import 'package:frequency_handler/pages/loading.dart';
 import 'package:frequency_handler/pages/chat_bot.dart';
 import 'package:frequency_handler/pages/audio.dart';
+import 'package:flutter_dotenv/flutter_dotenv.dart';
+import 'dart:io'; // Import dart:io
 
-void main() => runApp(HearingAidApp());
+Future<void> main() async {
+  print("Current directory: ${Directory.current.path}"); // Debugging line
+  try {
+    await dotenv.load(fileName: ".env"); // Load dotenv
+  } catch (e) {
+    print("Error loading .env file: $e");
+  }
+
+  runApp(HearingAidApp());
+
+}
 
 class HearingAidApp extends StatelessWidget {
   @override
@@ -85,7 +97,9 @@ class _HearingAidMainScreenState extends State<HearingAidMainScreen> {
             children: <Widget>[
               IconButton(
                 onPressed: () {
-                  Navigator.pushNamed(context, '/chat_bot');
+                  Navigator.pushNamed(context, '/chat_bot', arguments: {
+                    "API_KEY": dotenv.env["API_KEY"],
+                  });
                 },
                 icon: Icon(Icons.chat, color: Colors.green),
               ),
