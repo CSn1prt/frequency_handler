@@ -1,5 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
+import 'package:frequency_handler/pages/loading.dart';
+import 'package:frequency_handler/pages/chat_bot.dart';
+import 'package:frequency_handler/pages/audio.dart';
 
 void main() => runApp(HearingAidApp());
 
@@ -12,7 +15,14 @@ class HearingAidApp extends StatelessWidget {
         primarySwatch: Colors.blue,
         scaffoldBackgroundColor: Colors.grey[100],
       ),
-      home: HearingAidMainScreen(),
+      // home: HearingAidMainScreen(),
+      initialRoute: "/home",
+      routes: {
+        "/" : (context) => Loading(),
+        "/home" : (context) => HearingAidMainScreen(),
+        "/chat_bot": (context) => ChatBot(),
+        "/audio": (context) => Audio(),
+      },
       debugShowCheckedModeBanner: false,
     );
   }
@@ -31,38 +41,40 @@ class _HearingAidMainScreenState extends State<HearingAidMainScreen> {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      body: Stack(
-        children: [
-          // 메인 콘텐츠
-          Column(
-            children: [
-              // 상태 표시 영역
-              _buildStatusBar(),
-
-
-              // 주파수 조절 EQ 영역
-              Expanded(
-
-                child: Center(
-
-                  child: _buildGraphicEQ(),
+    return SafeArea(
+      child: Scaffold(
+        body: Stack(
+          children: [
+            // 메인 콘텐츠
+            Column(
+              children: [
+                // 상태 표시 영역
+                _buildStatusBar(context),
+      
+      
+                // 주파수 조절 EQ 영역
+                Expanded(
+      
+                  child: Center(
+      
+                    child: _buildGraphicEQ(),
+                  ),
                 ),
-              ),
-
-              // 제어 버튼 영역
-              _buildControlButtons(),
-            ],
-          ),
-
-          // 설정 패널 (슬라이드 업)
-          if (_showSettings) _buildSettingsPanel(),
-        ],
+      
+                // 제어 버튼 영역
+                _buildControlButtons(),
+              ],
+            ),
+      
+            // 설정 패널 (슬라이드 업)
+            if (_showSettings) _buildSettingsPanel(),
+          ],
+        ),
       ),
     );
   }
 
-  Widget _buildStatusBar() {
+  Widget _buildStatusBar(BuildContext context) {
     return Container(
       padding: EdgeInsets.symmetric(vertical: 20, horizontal: 16),
       child: Row(
@@ -70,10 +82,27 @@ class _HearingAidMainScreenState extends State<HearingAidMainScreen> {
         children: [
           // 배터리 상태
           Row(
-            children: [
-              Icon(Icons.access_alarms, color: Colors.green),
+            children: <Widget>[
+              IconButton(
+                onPressed: () {
+                  Navigator.pushNamed(context, '/chat_bot');
+                },
+                icon: Icon(Icons.chat, color: Colors.green),
+              ),
               SizedBox(width: 4),
+            ],
 
+          ),
+
+          Row(
+            children: <Widget>[
+              IconButton(
+                onPressed: () {
+                  Navigator.pushNamed(context, "/audio");
+                },
+                icon: Icon(Icons.audio_file, color: Colors.blue),
+              ),
+              SizedBox(width: 4),
             ],
           ),
 

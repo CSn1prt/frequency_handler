@@ -35,9 +35,17 @@ dependencies:
   # Use with the CupertinoIcons class for iOS style icons.
   cupertino_icons: ^1.0.8
 
-  permission_handler: ^10.4.0
+  permission_handler: ^12.0.0+1
   record: ^6.0.0
   flutter_svg: ^2.0.7
+
+  # Audio Modulation
+  just_audio: ^0.10.0
+
+  # AI dependencies
+  flutter_ai_toolkit: ^0.7.1
+  google_generative_ai: ^0.4.7 # you might choose to use Gemini,
+  firebase_core: ^3.13.0        # or Vertex AI or both
 
 dev_dependencies:
   flutter_test:

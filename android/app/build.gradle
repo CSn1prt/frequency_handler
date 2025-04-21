@@ -6,25 +6,26 @@ plugins {
 }
 
 android {
-    compileSdkVersion 33  // Set this to your desired API level
+    namespace "com.example.frequency_handler"
+    compileSdkVersion flutter.compileSdkVersion  // Set this to your desired API level
 
     defaultConfig {
         applicationId "com.example.frequency_handler"
-        minSdkVersion flutter.minSdkVersion  // or hard-code a value, e.g., 21
+        minSdkVersion 23  // or hard-code a value, e.g., 21
         targetSdkVersion flutter.targetSdkVersion  // or hard-code a value, e.g., 33
         versionCode flutter.versionCode
         versionName flutter.versionName
     }
 
     compileOptions {
-        sourceCompatibility JavaVersion.VERSION_1_8
-        targetCompatibility JavaVersion.VERSION_1_8
+        sourceCompatibility JavaVersion.VERSION_17
+        targetCompatibility JavaVersion.VERSION_17
     }
 
-    ndkVersion "21.3.6528147"
+    ndkVersion "25.1.8937393"
 
     kotlinOptions {
-        jvmTarget = "1.8" // Usually provided as a string.
+        jvmTarget = "17" // Usually provided as a string.
     }
 
     buildTypes {

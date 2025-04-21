@@ -1,0 +1,2 @@
+C:/Users/chans/Documents/project/hackathon/frequency_handler/android/app/.cxx/Debug/3k2p186f/x86_64/CMakeFiles/edit_cache.dir
+C:/Users/chans/Documents/project/hackathon/frequency_handler/android/app/.cxx/Debug/3k2p186f/x86_64/CMakeFiles/rebuild_cache.dir
